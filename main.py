@@ -143,7 +143,7 @@ def validate_url(url):
 		request = requests.get(url)
 	
 	# generic catch because requests can raise 
-	# a surprising number of  different errors.
+	# a surprising number of different errors.
 	except Exception as e:
 		raise UserWarning('Could not resolve <b>{0}</b>. Make sure the URL is valid.'.format(url))
 
