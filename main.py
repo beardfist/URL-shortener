@@ -138,7 +138,7 @@ def validate_url(url):
 	and should also help prevent sketchy stuff like SQL injections.
 	'''
 
-	# try to connect to connect to the url
+	# try to connect to the url
 	try:
 		request = requests.get(url)
 	
