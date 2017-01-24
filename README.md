@@ -6,7 +6,7 @@ A URL shortener written in Flask with the following features
  - Uses Web of Trust API to verify that the URL doesn't contain illegal or malicious content.
  - Reverse lookup of existing URLs.
  - Keeps track of number of hits per URL.
- - Ensures url is always as short as possible. Starts at 'a' and moves up through a-Z 0-9 and then to 'aa'
+ - Ensures url is always as short as possible. Starts at 'a', increments [a-z]-[A-Z]-[0-9] and then adds another symbol.
  - Simple bootstrap design with easy-to-modify colors via provided style.css
 
 A live version can be found at http://short.beardfist.com
