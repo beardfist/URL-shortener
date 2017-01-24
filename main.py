@@ -316,11 +316,10 @@ def main_page():
 
 	# init
 	url_is_safe     = False
-	error 	  	    = False
-	short_url 	    = ''
-	long_url  	    = ''
+	error 	  	= False
+	short_url 	= ''
+	long_url  	= ''
 	long_url_domain = ''
-	
 
 	# get the input from POST
 	if request.method == 'POST':
@@ -328,8 +327,8 @@ def main_page():
 
 	# validate long_url
 	if long_url:
+		
 		try:
-
 			# strip the url for leading and trailing whitespace
 			long_url = long_url.strip()
 
@@ -358,7 +357,6 @@ def main_page():
 			long_url = ''
 			url_is_safe = False
 
-
 	# url has been validated
 	if url_is_safe:
 
@@ -386,7 +384,6 @@ def main_page():
 		# set long_url_domain
 		long_url_domain = get_domain(long_url)
 		
-
 	# display the page
 	return render_template('index.html', short_url=short_url, long_url=long_url, long_url_domain=long_url_domain, error=error)
 
@@ -410,13 +407,12 @@ def reverse_page():
 
 	# init
 	valid_short_url  = False
-	error 	  	     = False
-	hits 			 = False
-	created 		 = False
-	short_url 	     = ''
-	long_url  	     = ''
-	url_string 		 = ''
-
+	error 	  	 = False
+	hits 		 = False
+	created 	 = False
+	short_url 	 = ''
+	long_url  	 = ''
+	url_string 	 = ''
 
 	# get the input from POST
 	if request.method == 'POST':
@@ -424,8 +420,8 @@ def reverse_page():
 
 	# validate short_url
 	if short_url:
+	
 		try:
-
 			# strip the url for leading and trailing whitespace
 			short_url = short_url.strip()
 
@@ -439,7 +435,6 @@ def reverse_page():
 
 		except UserWarning as e:
 			error = str(e)
-
 
 	# url validated for reverse lookup
 	if valid_short_url:
@@ -456,13 +451,11 @@ def reverse_page():
 			hits 	  = row[4]
 			long_url  = row[2]
 			created   = row[3].strftime("%d.%m.%Y")
-			
 		
 		except:
 			# it doesn't exist. return an error message.
 			error = 'The short URL has valid syntax, but was not found in our database.'
 			
-
 	# display the page
 	return render_template('reverse.html', short_url=short_url, long_url=long_url, error=error, hits=hits, created=created)
 
@@ -482,6 +475,7 @@ def destination_redirect(short_url):
 	try:		
 		cursor.execute("SELECT long_url FROM {0} WHERE short_url = '{1}';".format(DB_TABLE, short_url))
 		long_url = cursor.fetchone()[0]
+		
 	except Exception:
 		long_url = False		
 
@@ -490,6 +484,7 @@ def destination_redirect(short_url):
 		cursor.execute("UPDATE {0} SET hits = hits + 1 WHERE short_url = '{1}';".format(DB_TABLE, short_url))
 		pg.commit()
 		return redirect(long_url)
+	
 	else:
 		return abort(404)
 
