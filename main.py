@@ -36,8 +36,8 @@ def connect_to_pg(dbname, user, password, host = 'localhost'):
 	'''
 	try:
 		connect = psycopg2.connect("dbname={0} user={1}\
-                       				host={2} password={3}".format(
-                       				dbname, user, host, password))
+                       			   host={2} password={3}".format(
+                       			   dbname, user, host, password))
 	except Exception as e:
 		raise ValueError('Unable to connect to PostgreSQL database:', e)
 
