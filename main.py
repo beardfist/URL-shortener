@@ -400,9 +400,9 @@ def reverse_page():
 	
 	If it does, it returns a table with records about the entry.
 	 _________________________________________________________
-	| Short URL | Long URL 	 	   		| Created	   | Hits |
+	| Short URL | Long URL 	 	    | Created	   | Hits |
 	|___________|_______________________|______________|______|
-	| 	'aGd'	| www.beardfist.com		| 23.01.2017   | 241  |
+	| 'aGd'	    | www.beardfist.com	    | 23.01.2017   | 241  |
 	|___________|_______________________|______________|______|              											  |
 	 
 	If it is not found, returns an error message.
