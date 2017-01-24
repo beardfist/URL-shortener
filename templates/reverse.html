@@ -1,78 +1,78 @@
 <!DOCTYPE HTML>
 <html lang="en">
-	<head>
-		<!-- meta -->
-		<title>Reversify</title>
-		<meta charset="utf-8" />
+  <head>
+    <!-- meta -->
+    <title>Reversify</title>
+    <meta charset="utf-8" />
 
-		<!-- bootstrap CSS CDN -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		<!-- custom stylesheet -->
-		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- custom stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-		<!-- favicon -->
-		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-	</head>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
 
-	<body>
-		<div>
-			<!-- navbar -->
-			<div class="navbar-static-top navbar-inverse">
-			  <div class="container-fluid">
-			  	<a class="navbar-brand" href="/">Simplify</a>
-			  	<a class="navbar-brand" href="/reverse">Reverse</a>
-			  </div>
-			</div>
+  <body>
+    <div>
+      <!-- navbar -->
+      <div class="navbar-static-top navbar-inverse">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Simplify</a>
+          <a class="navbar-brand" href="/reverse">Reverse</a>
+        </div>
+      </div>
 
-			<!-- main blue bar -->
-			<div class='main-blue'>
-				<div class='center-block container'>
-					<div class='inner-centered'>
-						<h2>Look up a short URL</h2>
+      <!-- main blue bar -->
+      <div class='main-blue'>
+        <div class='center-block container'>
+          <div class='inner-centered'>
+            <h2>Look up a short URL</h2>
 
-						<!-- short_url input group -->
-						<form method="post">
-							<div class="input-group input-group-lg">
-								<input type="text" name="short_url" id="input_box" class="form-control" maxlength="2000" placeholder="Insert your shortened URL here" value='{{short_url}}' style="height:60px">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="submit" style="height:60px">Reversify</button>
-								</span>
-							</div>
-						</form>
+            <!-- short_url input group -->
+            <form method="post">
+              <div class="input-group input-group-lg">
+                <input type="text" name="short_url" id="input_box" class="form-control" maxlength="2000" placeholder="Insert your shortened URL here" value='{{short_url}}' style="height:60px">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit" style="height:60px">Reversify</button>
+                </span>
+              </div>
+            </form>
 
-						<br></br>
+            <br></br>
 
-						<!-- display errors -->
-						{% if error %}
-							<div class="alert alert-danger topspace" role="alert">
-								<b>ERROR</b>: {{error|safe}}
-							</div>
-						{% endif %}
-					</div>
-				</div>
-			</div>
+            <!-- display errors -->
+            {% if error %}
+              <div class="alert alert-danger topspace" role="alert">
+                <b>ERROR</b>: {{error|safe}}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
 
-			<!-- table block -->
-			<div>
-				{% if long_url %}
-					<table class="table table-bordered centered-topspace">
-			    		<tr class='active'>
-						    <th>Short URL</th>
-						    <th>Long URL</th> 
-						    <th>Created</th>
-						    <th>Total hits</th>
-			  			</tr>
-			  			<tr>
-			    			<td><a href='{{short_url}}'>{{short_url}}</a></td>
-			    			<td><a href='{{long_url}}'>{{long_url}}</a></td> 
-			    			<td>{{created}}</td>
-			    			<td>{{hits}}</td>
-			  			</tr>
-					</table>
-				{% endif %}
-			</div>
-		</div>
-	</body>
+      <!-- table block -->
+      <div>
+        {% if long_url %}
+          <table class="table table-bordered centered-topspace">
+              <tr class='active'>
+                <th>Short URL</th>
+                <th>Long URL</th> 
+                <th>Created</th>
+                <th>Total hits</th>
+              </tr>
+              <tr>
+                <td><a href='{{short_url}}'>{{short_url}}</a></td>
+                <td><a href='{{long_url}}'>{{long_url}}</a></td> 
+                <td>{{created}}</td>
+                <td>{{hits}}</td>
+              </tr>
+          </table>
+        {% endif %}
+      </div>
+    </div>
+  </body>
 </html>
 
