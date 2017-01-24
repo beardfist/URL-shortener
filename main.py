@@ -95,7 +95,6 @@ def validate_short_url(url):
 
 	return False
 
-
 def validate_schema(url):
 	'''
 	Checks if the url has either http or https schema.
@@ -128,7 +127,6 @@ def validate_schema(url):
 	else:
 		raise UserWarning('Illegal schema <b>{0}</b> detected in URL. Only <i>http and https</i> are permitted.'.format(schema))
 
-
 def validate_url(url):
 	'''
 	Check to see if the url actually resolves.
@@ -151,7 +149,6 @@ def validate_url(url):
 
 	# return the status code
 	return str(request.status_code) + ': ' + request.reason
-
 
 def safe_check(url):
 	'''
@@ -297,7 +294,6 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 
-
 ## MAIN WEB BLOCK ##
 
 @app.route('/', methods=['GET', 'POST'])
@@ -393,7 +389,6 @@ def main_page():
 
 	# display the page
 	return render_template('index.html', short_url=short_url, long_url=long_url, long_url_domain=long_url_domain, error=error)
-
 
 @app.route('/reverse', methods=['GET', 'POST'])
 def reverse_page():
@@ -497,7 +492,6 @@ def destination_redirect(short_url):
 		return redirect(long_url)
 	else:
 		return abort(404)
-
 
 # main function
 if __name__ == '__main__':
