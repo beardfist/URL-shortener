@@ -1,68 +1,68 @@
 <!DOCTYPE HTML>
 <html lang="en">
-	<head>
-		<!-- meta -->
-		<title>Simplify</title>
-		<meta charset="utf-8" />
+  <head>
+    <!-- meta -->
+    <title>Simplify</title>
+    <meta charset="utf-8" />
 
-		<!-- bootstrap CSS CDN -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		<!-- custom stylesheet -->
-		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- custom stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-		<!-- favicon -->
-		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-	</head>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
 
-	<body>
-		<div>
-			<!-- navbar -->
-			<div class="navbar-static-top navbar-inverse">
-			  <div class="container-fluid">
-			  	<a class="navbar-brand" href="/">Simplify</a>
-			  	<a class="navbar-brand" href="/reverse">Reverse</a>
-			  </div>
-			</div>
+  <body>
+    <div>
+      <!-- navbar -->
+      <div class="navbar-static-top navbar-inverse">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="/">Simplify</a>
+        <a class="navbar-brand" href="/reverse">Reverse</a>
+        </div>
+      </div>
 
-			<!-- main blue bar -->
-			<div class='main-blue'>
-				<div class='center-block container'>
-					<div class='inner-centered'>
-						<h2>Simplify a URL </h2>
+      <!-- main blue bar -->
+      <div class='main-blue'>
+        <div class='center-block container'>
+          <div class='inner-centered'>
+            <h2>Simplify a URL </h2>
 
-						<!-- long_url input group -->
-						<form method="post">
-							<div class="input-group input-group-lg">
-								<input type="text" name="long_url" id="input_box" class="form-control input-huge" maxlength="2000" placeholder="Insert your URL here" value='{{short_url}}' style="height:60px">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="submit" style="height:60px">Simplify</button>
-								</span>
-							</div>
-						</form>
-						
-						<br></br>
-						
-						<!-- messages -->
-						{% if error %}
-							<div class="alert alert-danger topspace" role="alert">
-								<b>ERROR</b>: {{error|safe}}
-							</div>
-						
-						{% elif short_url %}
-							<div class="alert alert-success topspace" role="alert">
-								<b>SUCCESS</b>: Your <b>{{long_url_domain}}</b> URL has been simplified to <b><a href={{short_url}}>{{short_url}}</a></b>
-							</div>
-							
-							<!-- mark the text using JS if we've just generated a short_url -->
-							<script>
-								document.getElementById("input_box").select();
-							</script>
-						{% endif %}
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+            <!-- long_url input group -->
+            <form method="post">
+              <div class="input-group input-group-lg">
+                <input type="text" name="long_url" id="input_box" class="form-control input-huge" maxlength="2000" placeholder="Insert your URL here" value='{{short_url}}' style="height:60px">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit" style="height:60px">Simplify</button>
+                </span>
+              </div>
+            </form>
+            
+            <br></br>
+            
+            <!-- messages -->
+            {% if error %}
+              <div class="alert alert-danger topspace" role="alert">
+                <b>ERROR</b>: {{error|safe}}
+              </div>
+            
+            {% elif short_url %}
+              <div class="alert alert-success topspace" role="alert">
+                <b>SUCCESS</b>: Your <b>{{long_url_domain}}</b> URL has been simplified to <b><a href={{short_url}}>{{short_url}}</a></b>
+              </div>
+              
+              <!-- mark the text using JS if we've just generated a short_url -->
+              <script>
+                document.getElementById("input_box").select();
+              </script>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
 
