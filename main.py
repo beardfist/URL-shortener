@@ -5,12 +5,11 @@
 # URL shortener running a Flask stack
 # Created by Leon Sandøy for Conmodo
 # ***********************************
-#
 
 # built-ins
 import os
 import sys
-import urlparse
+from urllib.parse import urlparse
 import requests
 import string
 import json
@@ -31,7 +30,7 @@ def connect_to_pg():
     """
     try:
         connect = psycopg2.connect(
-            "dbname=short_url user=postgres"
+            "dbname=short_url user=postgres "
             "host=localhost password={0}".format(POSTGRES_PASS)
         )
     except Exception as e:
@@ -49,7 +48,7 @@ def get_domain(url, keep_schema=False):
     get_domain('telegraph.co.uk/news')           -> 'telegraph.co.uk'
     """
 
-    parsed = urlparse.urlparse(url)
+    parsed = urlparse(url)
 
     domain = ''
 
@@ -67,7 +66,7 @@ def get_url_string(url):
     end of the shortened URLs
     get_url_string('short.beardfist.com/abD12') -> 'abD12'
     """
-    parsed = urlparse.urlparse(url)
+    parsed = urlparse(url)
 
     # slicing off the leading '/'
     return parsed.path[1:]
@@ -79,7 +78,7 @@ def validate_short_url(url):
     is a short_url created by this page.
     Returns True or False
     """
-    parsed = urlparse.urlparse(url)
+    parsed = urlparse(url)
 
     domain = get_domain(request.url)
 
@@ -267,7 +266,7 @@ def remove_non_ascii(s):
 app = Flask(__name__)
 
 # connecting to the postgres database
-pg = connect_to_pg('short_url', 'postgres', 'Otvaaoe1809!')
+pg = connect_to_pg()
 cursor = pg.cursor()
 
 # allowed short_string characters
@@ -282,13 +281,8 @@ unwanted_WOT_categories = {101: 'Malware or viruses', 103: 'Phishing attempts', 
 # protected url paths
 protected_paths = ['reverse']
 
-# this fixes some annoying unicode stuff
-reload(sys)
-sys.setdefaultencoding("utf-8")
-
 
 ## MAIN WEB BLOCK ##
-
 @app.route('/', methods=['GET', 'POST'])
 def main_page():
     """
